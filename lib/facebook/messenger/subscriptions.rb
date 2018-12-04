@@ -30,7 +30,7 @@ module Facebook
       def subscribe(access_token:, subscription_fields: [])
         response = post '/subscribed_apps', query: {
           access_token: access_token,
-          subscription_fields: subscription_fields
+          subscribed_fields: subscription_fields
         }
 
         raise_errors(response)
