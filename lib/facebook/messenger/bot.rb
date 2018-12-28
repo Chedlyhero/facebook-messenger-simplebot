@@ -26,8 +26,12 @@ module Facebook
         account_linking
         referral
         message_echo
+        message_request
+        pass_thread_control
+        take_thread_control
         payment
         policy_enforcement
+        standby
       ].freeze
 
       class << self
@@ -86,7 +90,12 @@ module Facebook
           event = Facebook::Messenger::Incoming::EVENTS.invert[callback.class]
           trigger(event.to_sym, callback)
         end
-
+        
+        # Used for receiving webhooks about feed changes (updates to fb page), NOT MESSENGER
+        def receive_standby(payload)        	
+        	trigger(:standby, Facebook::Messenger::Incoming::Standby.new(payload))
+        end
+        
         # Trigger the hook for the given event.
         # Fetch callback for event from hooks and call it.
         #
