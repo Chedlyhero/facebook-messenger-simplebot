@@ -8,8 +8,11 @@ require 'facebook/messenger/incoming/optin'
 require 'facebook/messenger/incoming/read'
 require 'facebook/messenger/incoming/account_linking'
 require 'facebook/messenger/incoming/referral'
+require 'facebook/messenger/incoming/pass_thread_control'
+require 'facebook/messenger/incoming/take_thread_control'
 require 'facebook/messenger/incoming/payment'
 require 'facebook/messenger/incoming/policy_enforcement'
+require 'facebook/messenger/incoming/standby'
 
 module Facebook
   module Messenger
@@ -30,8 +33,11 @@ module Facebook
         'referral' => Referral,
         'message_echo' => MessageEcho,
         'message_request' => MessageRequest,
+        'pass_thread_control' => PassThreadControl,
+        'take_thread_control' => TakeThreadControl,
         'payment' => Payment,
-        'policy_enforcement' => PolicyEnforcement
+        'policy_enforcement' => PolicyEnforcement,
+        'standby' => Standby
       }.freeze
 
       # Parse the given payload and create new object of class related
