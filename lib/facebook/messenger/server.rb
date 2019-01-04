@@ -31,14 +31,18 @@ module Facebook
 	
 
         if @request.get?
+		puts "********** GET"
           verify
         elsif @request.post?
+		puts "********** POST"
           receive
         else
+		puts "********** RESPONSE"
           @response.status = 405
         end
 
         @response.finish
+	puts @response
       end
 
       # @private
