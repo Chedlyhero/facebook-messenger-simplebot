@@ -29,7 +29,7 @@ module Facebook
         @response = Rack::Response.new
 
 	puts "SERVER********"
-	puts receive['message']
+	puts receive.message
 
         if @request.get?
           verify
