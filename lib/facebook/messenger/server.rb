@@ -24,7 +24,7 @@ module Facebook
 
       # Rack handler for request.
       def call(env)
-
+puts "SERVER********"
         @request = Rack::Request.new(env)
         @response = Rack::Response.new
 
@@ -48,7 +48,7 @@ module Facebook
       # @see https://developers.facebook.com/docs/graph-api/webhooks#callback
       #
       def verify
-	puts "SERVER********"
+	
         if valid_verify_token?(@request.params['hub.verify_token'])
           @response.write @request.params['hub.challenge']
         else
