@@ -17,6 +17,7 @@ module Facebook
     # Facebook Messenger Platform.
     #
     class Server
+	puts "SERVER********"
       def self.call(env)
         new.call(env)
       end
