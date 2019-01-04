@@ -27,9 +27,9 @@ module Facebook
 	
         @request = Rack::Request.new(env)
         @response = Rack::Response.new
-	puts @request
+
 	puts "SERVER********"
-	puts @response
+	puts env
 
         if @request.get?
           verify
