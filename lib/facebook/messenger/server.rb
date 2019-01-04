@@ -28,7 +28,7 @@ module Facebook
         @request = Rack::Request.new(env)
         @response = Rack::Response.new
 
-	puts "SERVER********"
+	
 
         if @request.get?
           verify
@@ -80,6 +80,10 @@ module Facebook
         # If app secret is not found in environment, return.
         # So for the security purpose always add provision in
         #   configuration provider to return app secret.
+
+	puts "SERVER********"
+	puts parsed_body
+
         return unless app_secret_for(parsed_body['entry'][0]['id'])
 
         unless signature.start_with?('sha1='.freeze)
