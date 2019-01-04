@@ -31,13 +31,10 @@ module Facebook
 	
 
         if @request.get?
-		puts "********** GET"
           verify
         elsif @request.post?
-		puts "********** POST"
           receive
         else
-		puts "********** RESPONSE"
           @response.status = 405
         end
 
@@ -86,7 +83,7 @@ module Facebook
         #   configuration provider to return app secret.
 
 	puts "SERVER********"
-	puts parsed_body['entry'][0]['standby'][0]['message']
+	#puts parsed_body['entry'][0]['standby'][0]['message']
 
         return unless app_secret_for(parsed_body['entry'][0]['id'])
 
@@ -182,6 +179,7 @@ module Facebook
           elsif entry['standby'.freeze]
             entry['standby'.freeze].each do |messaging|
 	            Facebook::Messenger::Bot.receive_standby(messaging)
+		    puts "*****STAND"
 	          end
           end
         end
