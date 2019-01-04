@@ -17,13 +17,14 @@ module Facebook
     # Facebook Messenger Platform.
     #
     class Server
-	puts "SERVER********"
+	
       def self.call(env)
         new.call(env)
       end
 
       # Rack handler for request.
       def call(env)
+puts "SERVER********"
         @request = Rack::Request.new(env)
         @response = Rack::Response.new
 
