@@ -39,7 +39,6 @@ module Facebook
         end
 
         @response.finish
-	puts @response
       end
 
       # @private
@@ -81,9 +80,6 @@ module Facebook
         # If app secret is not found in environment, return.
         # So for the security purpose always add provision in
         #   configuration provider to return app secret.
-
-	puts "SERVER********"
-	#puts parsed_body['entry'][0]['standby'][0]['message']
 
         return unless app_secret_for(parsed_body['entry'][0]['id'])
 
@@ -180,6 +176,7 @@ module Facebook
             entry['standby'.freeze].each do |messaging|
 	            Facebook::Messenger::Bot.receive_standby(messaging)
 		    puts "*****STAND"
+		    puts parsed_body['entry'][0]['standby'][0]['message']
 	          end
           end
         end
