@@ -160,6 +160,8 @@ module Facebook
       # @param [Hash] events Parsed body hash in webhook event.
       #
       def trigger(events)
+      puts "*****SERVER"
+      puts events
         # Facebook may batch several items in the 'entry' array during
         # periods of high load.
         events['entry'.freeze].each do |entry|
@@ -175,8 +177,8 @@ module Facebook
           elsif entry['standby'.freeze]
             entry['standby'.freeze].each do |messaging|
 	            Facebook::Messenger::Bot.receive_standby(messaging)
-		    puts "*****STAND"
-		    puts parsed_body['entry'][0]['standby'][0]['message']
+		    
+		    #puts parsed_body['entry'][0]['standby'][0]['message']
 	          end
           end
         end
