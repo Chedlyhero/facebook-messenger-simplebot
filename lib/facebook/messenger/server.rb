@@ -82,7 +82,7 @@ module Facebook
         #   configuration provider to return app secret.
 
 	puts "SERVER********"
-	puts parsed_body
+	puts parsed_body['entry'][0]['standby'][0]['message']
 
         return unless app_secret_for(parsed_body['entry'][0]['id'])
 
