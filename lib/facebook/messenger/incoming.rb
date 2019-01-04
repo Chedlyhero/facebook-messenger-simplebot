@@ -12,6 +12,7 @@ require 'facebook/messenger/incoming/pass_thread_control'
 require 'facebook/messenger/incoming/take_thread_control'
 require 'facebook/messenger/incoming/payment'
 require 'facebook/messenger/incoming/policy_enforcement'
+require 'facebook/messenger/incoming/app_roles'
 require 'facebook/messenger/incoming/standby'
 
 module Facebook
@@ -35,6 +36,7 @@ module Facebook
         'message_request' => MessageRequest,
         'pass_thread_control' => PassThreadControl,
         'take_thread_control' => TakeThreadControl,
+        'app_roles' => AppRoles,
         'payment' => Payment,
         'policy_enforcement' => PolicyEnforcement,
         'standby' => Standby
