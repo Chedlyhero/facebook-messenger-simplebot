@@ -24,9 +24,12 @@ module Facebook
 
       # Rack handler for request.
       def call(env)
-puts "SERVER********"
+	
         @request = Rack::Request.new(env)
         @response = Rack::Response.new
+	puts @request
+	puts "SERVER********"
+	puts @response
 
         if @request.get?
           verify
