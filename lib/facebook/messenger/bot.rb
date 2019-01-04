@@ -29,6 +29,7 @@ module Facebook
         message_request
         pass_thread_control
         take_thread_control
+        app_roles
         payment
         policy_enforcement
         standby
