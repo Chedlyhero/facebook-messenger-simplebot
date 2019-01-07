@@ -174,6 +174,8 @@ module Facebook
 		    
 		    puts "**************"
 		    @sender_id = messaging['sender']
+		    puts @sender_id
+		    puts "**************"
 		    puts messaging
 		    #unless messaging['pass_thread_control'].nil?
 		    #	    puts "***********PASS TO BOT CONTROL BY ADMIN"
