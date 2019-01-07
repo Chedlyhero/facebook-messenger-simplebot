@@ -171,8 +171,9 @@ module Facebook
           if entry['messaging'.freeze]
             entry['messaging'.freeze].each do |messaging|
               Facebook::Messenger::Bot.receive(messaging)
-		    #@sender_id = entry['standby'][0]['sender']['id']
+		    
 		    puts "**************"
+		    @sender_id = messaging['sender']
 		    puts messaging
 		    #unless messaging['pass_thread_control'].nil?
 		    #	    puts "***********PASS TO BOT CONTROL BY ADMIN"
