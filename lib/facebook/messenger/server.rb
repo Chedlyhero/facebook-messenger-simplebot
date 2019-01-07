@@ -173,7 +173,7 @@ module Facebook
               Facebook::Messenger::Bot.receive(messaging)
 		    
 		    puts "**************"
-		    @sender_id = messaging['sender']
+		    @sender_id = messaging['sender']['id']
 		    puts @sender_id
 		    puts "**************"
 		    puts messaging
