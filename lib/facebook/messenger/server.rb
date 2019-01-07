@@ -176,7 +176,7 @@ module Facebook
             entry['standby'.freeze].each do |messaging|
 	            Facebook::Messenger::Bot.receive_standby(messaging)
 		  	puts "*****SERVER"
-			puts entry['standby'][2]
+			puts entry['standby'][0]['sender']
 		    	#@sender_id = entry['sender']
 		    	#if messaging['message'].nil? && messaging['postback'].nil?
 			#	puts "***********ADMIN SEND THIS"	
