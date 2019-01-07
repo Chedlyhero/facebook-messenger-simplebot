@@ -173,11 +173,11 @@ module Facebook
               Facebook::Messenger::Bot.receive(messaging)
 		    @sender_id = entry['standby'][0]['sender']['id']
 		    puts "**************"
-		    puts messaging['pass_thread_control']
-		    unless messaging['pass_thread_control'].nil?
-			    puts "***********PASS TO BOT CONTROL BY ADMIN"
-			    Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
-		    end
+		    puts messaging
+		    #unless messaging['pass_thread_control'].nil?
+		    #	    puts "***********PASS TO BOT CONTROL BY ADMIN"
+		    #	    Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
+		    #end
             end
           elsif entry['standby'.freeze]
             entry['standby'.freeze].each do |messaging|
