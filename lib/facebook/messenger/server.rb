@@ -171,19 +171,21 @@ module Facebook
           if entry['messaging'.freeze]
             entry['messaging'.freeze].each do |messaging|
               Facebook::Messenger::Bot.receive(messaging)
+		    puts "**************"
+		    puts "HERE"
             end
           elsif entry['standby'.freeze]
             entry['standby'.freeze].each do |messaging|
-	            Facebook::Messenger::Bot.receive_standby(messaging)
-		  	puts "*****SERVER"
+		    Facebook::Messenger::Bot.receive_standby(messaging)
+			puts "*****SERVER"
 			@sender_id = entry['standby'][0]['sender']['id']
-		    	if messaging['message'].nil? && messaging['postback'].nil?
+			if messaging['message'].nil? && messaging['postback'].nil?
 				puts "***********ADMIN SEND THIS"
 				Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
 			end
-		    	#puts messaging['sender']
-		    	#puts parsed_body['entry'][0]['standby'][0]['message']
-	          end
+			#puts messaging['sender']
+			#puts parsed_body['entry'][0]['standby'][0]['message']
+		  end
           end
         end
       end
