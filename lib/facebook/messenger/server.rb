@@ -176,6 +176,11 @@ module Facebook
 		    unless messaging['pass_thread_control'].nil?
 		    	    puts "***********PASS TO BOT CONTROL BY ADMIN"
 		    	    Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
+			      Bot.deliver({recipient: {id: @sender_id},
+                    		message: {text: "The Page Inbox is passing control to the Bot"},
+                    		message_type: "RESPONSE"},
+                    		access_token: Settings.facebook_accesss_token)
+                  
 		    end
             end
           elsif entry['standby'.freeze]
