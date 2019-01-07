@@ -171,8 +171,13 @@ module Facebook
           if entry['messaging'.freeze]
             entry['messaging'.freeze].each do |messaging|
               Facebook::Messenger::Bot.receive(messaging)
+		    @sender_id = entry['standby'][0]['sender']['id']
 		    puts "**************"
-		    puts messaging
+		    puts messaging['pass_thread_control']
+		    unless messaging['pass_thread_control'].nil?
+			    puts "***********PASS TO BOT CONTROL BY ADMIN"
+			    Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
+		    end
             end
           elsif entry['standby'.freeze]
             entry['standby'.freeze].each do |messaging|
