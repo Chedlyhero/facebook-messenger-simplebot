@@ -176,8 +176,8 @@ module Facebook
             entry['standby'.freeze].each do |messaging|
 	            Facebook::Messenger::Bot.receive_standby(messaging)
 		  	puts "*****SERVER"
-			#puts messaging
-		    	puts messaging['sender']
+			puts messaging
+		    	#puts messaging['sender']
 		    	#puts parsed_body['entry'][0]['standby'][0]['message']
 	          end
           end
