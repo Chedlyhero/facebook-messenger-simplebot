@@ -172,7 +172,7 @@ module Facebook
             entry['messaging'.freeze].each do |messaging|
               Facebook::Messenger::Bot.receive(messaging)
 		    puts "**************"
-		    puts "HERE"
+		    puts messaging
             end
           elsif entry['standby'.freeze]
             entry['standby'.freeze].each do |messaging|
