@@ -204,7 +204,7 @@ module Facebook
 				    }
 				    
 			        Bot.deliver({recipient: {id: @sender_id},
-                    			message: @message,
+                    			message: @message[0],
                     			message_type: "RESPONSE"},
                     			access_token: Settings.facebook_accesss_token)
 			  	FacebookMessengerService.setTimeState(false) 
