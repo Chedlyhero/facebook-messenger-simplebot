@@ -177,8 +177,33 @@ module Facebook
 		    	    puts "***********PASS TO BOT CONTROL BY ADMIN"
 			    if FacebookMessengerService.getTimeState == true
 			    	Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
+				  @message << {
+				    attachment: {
+				      type: "template",
+				      payload: {
+					template_type: "generic",
+					elements:[
+					    {
+					      title: "Contact", 
+					      image_url: "https://www.simplebot.tn/hyundai/service.jpg",
+					      subtitle: "Nous somme désolé, pas d’agent disponible pour le moment je vous invite à laisser un message à travers le formulaire suivant",
+					      buttons: [
+						{
+						  type: "web_url",
+						  url: "https://www.simplebot.tn/chedly/contact/?name=#{@name}",
+						  webview_height_ratio: "FULL",
+						  messenger_extensions: true,
+						  title: "Formulaire de contact"
+						}
+					      ]      
+					    }
+					  ]
+					}   
+				      }
+				    }
+				    
 			        Bot.deliver({recipient: {id: @sender_id},
-                    			message: {text: "Nous somme désoler, pas d’agent disponible pour le moment je vous inviter à laisser un message à travers le formulaire suivant. (Lien vers formulaire)"},
+                    			message: @message,
                     			message_type: "RESPONSE"},
                     			access_token: Settings.facebook_accesss_token)
 			  	FacebookMessengerService.setTimeState(false) 
