@@ -175,15 +175,22 @@ module Facebook
 		    puts messaging
 		    unless messaging['pass_thread_control'].nil?
 		    	    puts "***********PASS TO BOT CONTROL BY ADMIN"
-			    FacebookMessengerService.setTimeState(true)
-			    puts FacebookMessengerService.getTimeState
-			    
-		    	    Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
-			      Bot.deliver({recipient: {id: @sender_id},
-                    		message: {text: "Maintenant notre bot reprends la main."},
-                    		message_type: "RESPONSE"},
-                    		access_token: Settings.facebook_accesss_token)
-                  
+			    if FacebookMessengerService.getTimeState == true
+			    	Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
+			        Bot.deliver({recipient: {id: @sender_id},
+                    			message: {text: "Nous somme désoler, pas d’agent disponible pour le moment je vous inviter à laisser un message à travers le formulaire suivant. (Lien vers formulaire)"},
+                    			message_type: "RESPONSE"},
+                    			access_token: Settings.facebook_accesss_token)
+			  	FacebookMessengerService.setTimeState(false) 
+			    else
+				Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
+			        Bot.deliver({recipient: {id: @sender_id},
+                    			message: {text: "Maintenant notre bot reprends la main."},
+                    			message_type: "RESPONSE"},
+                    			access_token: Settings.facebook_accesss_token)
+                  	    	
+			    end
+			   
 		    end
             end
           elsif entry['standby'.freeze]
