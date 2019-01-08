@@ -175,7 +175,7 @@ module Facebook
 		    puts messaging
 		    unless messaging['pass_thread_control'].nil?
 		    	    puts "***********PASS TO BOT CONTROL BY ADMIN"
-			    puts BotController.TimePassed
+			    puts Contact.TimePassed
 		    	    Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
 			      Bot.deliver({recipient: {id: @sender_id},
                     		message: {text: "Maintenant notre bot reprends la main."},
