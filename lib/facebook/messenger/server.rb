@@ -177,7 +177,7 @@ module Facebook
 		    	    puts "***********PASS TO BOT CONTROL BY ADMIN"
 		    	    Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
 			      Bot.deliver({recipient: {id: @sender_id},
-                    		message: {text: "The Page Inbox is passing control to the Bot"},
+                    		message: {text: "Maintenant notre bot reprends la main."},
                     		message_type: "RESPONSE"},
                     		access_token: Settings.facebook_accesss_token)
                   
