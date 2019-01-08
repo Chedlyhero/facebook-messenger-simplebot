@@ -177,6 +177,7 @@ module Facebook
 		    	    puts "***********PASS TO BOT CONTROL BY ADMIN"
 			    if FacebookMessengerService.getTimeState == true
 			    	Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
+			    	  @message = []
 				  @message << {
 				    attachment: {
 				      type: "template",
