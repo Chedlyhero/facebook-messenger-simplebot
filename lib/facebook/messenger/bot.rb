@@ -93,7 +93,19 @@ module Facebook
         end
         
         # Used for receiving webhooks about feed changes (updates to fb page), NOT MESSENGER
-        def receive_standby(payload)    
+        def receive_standby(payload)
+          @persona_id = nil
+          unless FacebookMessengerService.getPersonaId.nil?
+            @persona_id =  FacebookMessengerService.getPersonaId
+          end
+
+          unless @persona_id.nil?
+            payload["persona_id"] = @persona_id
+          end
+          
+          puts "PERSONA **************"
+		      puts payload
+          
         	trigger(:standby, Facebook::Messenger::Incoming::Standby.new(payload))
         end
         
