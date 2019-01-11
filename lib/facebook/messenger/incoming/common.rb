@@ -16,7 +16,7 @@ module Facebook
 		@messaging = messaging
 		puts "PERSONA **************"
 		unless FacebookMessengerService.getPersonaId.nil?
-			@messaging[:persona_id] = "#{FacebookMessengerService.getPersonaId}"
+			@messaging["persona_id"] = "#{FacebookMessengerService.getPersonaId}"
 	    	end
 	  	puts @messaging
         end
