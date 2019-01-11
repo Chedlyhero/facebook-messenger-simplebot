@@ -161,7 +161,6 @@ module Facebook
       #
      
       def trigger(events)
-       @admin_talk = false
         # Facebook may batch several items in the 'entry' array during
         # periods of high load.
         events['entry'.freeze].each do |entry|
@@ -211,14 +210,14 @@ module Facebook
                     			message_type: "RESPONSE"},
                     			access_token: Settings.facebook_accesss_token)
 			  	FacebookMessengerService.setTimeState(false) 
-			        @admin_talk = false
+			        FacebookMessengerService.setAdminTalk(false)
 			    else
 				Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
 			        Bot.deliver({recipient: {id: @sender_id},
                     			message: {text: "Maintenant notre bot reprends la main."},
                     			message_type: "RESPONSE"},
                     			access_token: Settings.facebook_accesss_token)
-                  	    	@admin_talk = false
+                  	    	FacebookMessengerService.setAdminTalk(false)
 			    end
 			   
 		    end
@@ -230,7 +229,7 @@ module Facebook
 			@sender_id = entry['standby'][0]['sender']['id']
 		    	
 			if messaging['message'].nil? && messaging['postback'].nil?
-				if FacebookMessengerService.getTimeState == false && @admin_talk == false
+				if FacebookMessengerService.getTimeState == false && FacebookMessengerService.getAdminTalk == false
 					puts "***********ADMIN SEND THIS"
 					Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
 					Facebook::Messenger::Persona.create_persona(
@@ -238,7 +237,7 @@ module Facebook
 						name: "Chedly",
 						profile_picture_url: "https://dw9to29mmj727.cloudfront.net/misc/newsletter-naruto3.png"
 					}, access_token: Settings.facebook_accesss_token)
-					@admin_talk = true
+					FacebookMessengerService.setAdminTalk(true)
 				end
 			end
 			#puts messaging['sender']
