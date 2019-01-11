@@ -48,6 +48,9 @@ module Facebook
         # Returns a String describing the message ID if the message was sent,
         # or raises an exception if it was not.
         def deliver(message, access_token:)
+          puts "BOT ************"
+          puts FacebookMessengerService.getPersonaId
+          
           response = post '/messages',
                           body: JSON.dump(message),
                           format: :json,
