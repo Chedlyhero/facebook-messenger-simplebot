@@ -15,7 +15,9 @@ module Facebook
         response = post '/personas', body: settings, query: {
           access_token: access_token
         }
-
+        puts "Persona ///////////////"
+        puts response
+        
         raise_errors(response)
 
         true
