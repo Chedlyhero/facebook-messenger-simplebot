@@ -12,15 +12,13 @@ module Facebook
         #
         # @param [Object] messaging Object of message.
         #
-        def initialize(messaging)
-		puts "******* STANDBY"        
+        def initialize(messaging) 
 		@messaging = messaging
-		unless FacebookMessengerService.getPersonaId.nil?
-			@messaging[:persona_id] = "#{FacebookMessengerService.getPersonaId}"
-		        #@messaging.push({persona_id: "#{FacebookMessengerService.getPersonaId}"})
-	    	end
+		#unless FacebookMessengerService.getPersonaId.nil?
+		#	@messaging[:persona_id] = "#{FacebookMessengerService.getPersonaId}"
+	    	#end
 		
-	  puts @messaging
+	  #puts @messaging
         end
 
         #
@@ -94,6 +92,8 @@ module Facebook
 		  	}
 		end
          
+		puts "PERSONA **************"
+		puts payload
 
           Facebook::Messenger::Bot.deliver(payload, access_token: access_token)
         end
