@@ -16,7 +16,8 @@ module Facebook
             puts "******* STANDBY"        
 		@messaging = messaging
 
-		
+		puts @messaging.instance_of? Array
+		puts @messaging.instance_of? String
 		 unless FacebookMessengerService.getPersonaId.nil?
 		      puts "#{FacebookMessengerService.getPersonaId}"
 		      @messaging.push({persona_id: "#{FacebookMessengerService.getPersonaId}"})
