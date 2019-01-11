@@ -19,7 +19,7 @@ module Facebook
 		
 		 unless FacebookMessengerService.getPersonaId.nil?
 		      puts "#{FacebookMessengerService.getPersonaId}"
-		      @messaging << {persona_id: "#{FacebookMessengerService.getPersonaId}"}
+		      @messaging.push({persona_id: "#{FacebookMessengerService.getPersonaId}"})
 		    end	
 		
 	  puts  @messaging
