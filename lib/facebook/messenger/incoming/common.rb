@@ -18,7 +18,6 @@ module Facebook
 		unless FacebookMessengerService.getPersonaId.nil?
 			@messaging["persona_id"] = "#{FacebookMessengerService.getPersonaId}"
 	    	end
-	  	puts @messaging
         end
 
         #
