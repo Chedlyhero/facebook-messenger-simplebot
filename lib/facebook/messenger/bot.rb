@@ -103,8 +103,8 @@ module Facebook
             payload["persona_id"] = @persona_id
           end
           
-          puts "PERSONA **************"
-      	puts payload
+         
+      	#puts payload
           
         trigger(:standby, Facebook::Messenger::Incoming::Standby.new(payload))
         end
