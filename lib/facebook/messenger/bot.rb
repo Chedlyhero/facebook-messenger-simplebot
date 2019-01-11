@@ -100,7 +100,7 @@ module Facebook
           end
 
           unless @persona_id.nil?
-            payload["persona_id"] = {"id": @persona_id}
+            payload["persona_id"] = {"id" = @persona_id}
           end
           
           puts "PERSONA **************"
