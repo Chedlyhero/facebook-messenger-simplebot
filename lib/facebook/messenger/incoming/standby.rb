@@ -24,6 +24,8 @@ module Facebook
         end
          
         def text
+	  puts "******* STANDBY"
+	  puts @messaging['message']['text']
           @messaging['message']['text']
         end
 
