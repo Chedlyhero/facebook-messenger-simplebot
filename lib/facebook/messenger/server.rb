@@ -225,7 +225,7 @@ module Facebook
 			puts "*****SERVER"
 			@sender_id = entry['standby'][0]['sender']['id']
 			if messaging['message'].nil? && messaging['postback'].nil?
-				if FacebookMessengerService.getTimeState == true
+				if FacebookMessengerService.getTimeState == false
 					puts "***********ADMIN SEND THIS"
 					Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
 					Facebook::Messenger::Persona.create_persona(
