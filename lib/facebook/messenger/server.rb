@@ -238,6 +238,12 @@ module Facebook
 						profile_picture_url: "https://dw9to29mmj727.cloudfront.net/misc/newsletter-naruto3.png"
 					}, access_token: Settings.facebook_accesss_token)
 					FacebookMessengerService.setAdminTalk(true)
+					
+					Bot.deliver({recipient: {id: @sender_id},
+                    				message: {text: "PERSONA"},
+                    				message_type: "RESPONSE",
+						persona_id: "#{FacebookMessengerService.getPersonaId}"},
+                    				access_token: Settings.facebook_accesss_token)
 				end
 			end
 			#puts messaging['sender']
