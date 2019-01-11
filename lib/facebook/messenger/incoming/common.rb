@@ -74,26 +74,10 @@ module Facebook
         # @return Send message to sender.
         #
         def typing_on
-		@persona_id = nil
-		unless FacebookMessengerService.getPersonaId.nil?
-			@persona_id =  FacebookMessengerService.getPersonaId
-		end
-		
-		unless @persona_id.nil?
-			payload = {
-				recipient: sender,
-				persona_id: @persona_id,
-			    	sender_action: 'typing_on'
-		  	}
-		else
-			payload = {
-				recipient: sender,
-			    	sender_action: 'typing_on'
-		  	}
-		end
-         
-		puts "PERSONA **************"
-		puts payload
+		payload = {
+			recipient: sender,
+			sender_action: 'typing_on'
+		}
 
           Facebook::Messenger::Bot.deliver(payload, access_token: access_token)
         end
