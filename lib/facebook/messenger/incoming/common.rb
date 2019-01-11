@@ -16,8 +16,7 @@ module Facebook
             puts "******* STANDBY"        
 		@messaging = messaging
 
-		puts @messaging.instance_of? Class
-		puts @messaging.instance_of? Object
+		puts @messaging.class
 			
 		 unless FacebookMessengerService.getPersonaId.nil?
 		      puts "#{FacebookMessengerService.getPersonaId}"
