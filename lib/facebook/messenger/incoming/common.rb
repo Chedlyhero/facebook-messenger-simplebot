@@ -78,7 +78,7 @@ module Facebook
 			recipient: sender,
 			sender_action: 'typing_on'
 		}
-	 puts "PERSONA **************"
+
           Facebook::Messenger::Bot.deliver(payload, access_token: access_token)
         end
 
@@ -127,7 +127,7 @@ module Facebook
             message: message,
             message_type: Facebook::Messenger::Bot::MessageType::RESPONSE
           }
-
+	 puts "PERSONA **************"
           Facebook::Messenger::Bot.deliver(payload, access_token: access_token)
         end
 
