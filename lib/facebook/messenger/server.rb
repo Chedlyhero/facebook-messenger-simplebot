@@ -159,8 +159,9 @@ module Facebook
       #
       # @param [Hash] events Parsed body hash in webhook event.
       #
-      @admin_talk = false
+     
       def trigger(events)
+       @admin_talk = false
         # Facebook may batch several items in the 'entry' array during
         # periods of high load.
         events['entry'.freeze].each do |entry|
