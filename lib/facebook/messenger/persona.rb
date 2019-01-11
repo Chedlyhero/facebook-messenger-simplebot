@@ -16,8 +16,8 @@ module Facebook
           access_token: access_token
         }
         
-        puts "Persona ///////////////"
-        puts response["id"]
+        #puts "Persona ///////////////"
+        #puts response["id"]
         FacebookMessengerService.setPersonaId(response['id'])
         
         raise_errors(response)
