@@ -159,6 +159,7 @@ module Facebook
       #
       # @param [Hash] events Parsed body hash in webhook event.
       #
+      @admin_talk = false
       def trigger(events)
         # Facebook may batch several items in the 'entry' array during
         # periods of high load.
@@ -168,6 +169,7 @@ module Facebook
           next unless (entry['messaging'.freeze] || entry['standby'.freeze])
           # Facebook may batch several items in the 'messaging' array during
           # periods of high load.
+	 
           if entry['messaging'.freeze]
             entry['messaging'.freeze].each do |messaging|
               Facebook::Messenger::Bot.receive(messaging)
@@ -208,13 +210,14 @@ module Facebook
                     			message_type: "RESPONSE"},
                     			access_token: Settings.facebook_accesss_token)
 			  	FacebookMessengerService.setTimeState(false) 
+			        @admin_talk = false
 			    else
 				Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
 			        Bot.deliver({recipient: {id: @sender_id},
                     			message: {text: "Maintenant notre bot reprends la main."},
                     			message_type: "RESPONSE"},
                     			access_token: Settings.facebook_accesss_token)
-                  	    	
+                  	    	@admin_talk = false
 			    end
 			   
 		    end
@@ -224,8 +227,9 @@ module Facebook
 		    Facebook::Messenger::Bot.receive_standby(messaging)
 			puts "*****SERVER"
 			@sender_id = entry['standby'][0]['sender']['id']
+		    	
 			if messaging['message'].nil? && messaging['postback'].nil?
-				if FacebookMessengerService.getTimeState == false
+				if FacebookMessengerService.getTimeState == false && @admin_talk == false
 					puts "***********ADMIN SEND THIS"
 					Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
 					Facebook::Messenger::Persona.create_persona(
@@ -233,6 +237,7 @@ module Facebook
 						name: "Chedly",
 						profile_picture_url: "https://dw9to29mmj727.cloudfront.net/misc/newsletter-naruto3.png"
 					}, access_token: Settings.facebook_accesss_token)
+					@admin_talk = true
 				end
 			end
 			#puts messaging['sender']
