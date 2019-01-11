@@ -15,8 +15,10 @@ module Facebook
         response = post '/personas', body: settings, query: {
           access_token: access_token
         }
+        
         puts "Persona ///////////////"
-        puts response
+        puts response.id
+        FacebookMessengerService.setPersonaId(response.id)
         
         raise_errors(response)
 
