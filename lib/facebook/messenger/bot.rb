@@ -100,13 +100,13 @@ module Facebook
           end
 
           unless @persona_id.nil?
-            payload["persona_id"] = @persona_id
+            payload["persona_id"] = {id: @persona_id}
           end
           
           puts "PERSONA **************"
-		      puts payload
+      	puts payload
           
-        	trigger(:standby, Facebook::Messenger::Incoming::Standby.new(payload))
+        trigger(:standby, Facebook::Messenger::Incoming::Standby.new(payload))
         end
         
         # Trigger the hook for the given event.
