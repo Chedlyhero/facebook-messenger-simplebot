@@ -97,8 +97,9 @@ module Facebook
            	puts "******* STANDBY"
 		unless FacebookMessengerService.getPersonaId.nil?
 			puts "#{FacebookMessengerService.getPersonaId}"
+			payload << {persona_id: "#{FacebookMessengerService.getPersonaId}"}
 		end	
-		#payload << {persona_id: "#{FacebookMessengerService.getPersonaId}"}
+
 	        puts payload
         	trigger(:standby, Facebook::Messenger::Incoming::Standby.new(payload))
         end
