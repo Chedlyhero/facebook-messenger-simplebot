@@ -78,7 +78,7 @@ module Facebook
 			recipient: sender,
 			sender_action: 'typing_on'
 		}
-
+	 puts "PERSONA **************"
           Facebook::Messenger::Bot.deliver(payload, access_token: access_token)
         end
 
