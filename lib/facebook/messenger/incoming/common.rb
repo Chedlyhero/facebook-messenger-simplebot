@@ -84,7 +84,7 @@ module Facebook
 		unless @persona_id.nil?
 			payload = {
 				recipient: sender,
-				persona_id: @persona_id
+				persona_id: @persona_id,
 			    	sender_action: 'typing_on'
 		  	}
 		else
