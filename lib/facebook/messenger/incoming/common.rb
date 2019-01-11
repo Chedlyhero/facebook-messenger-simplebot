@@ -18,6 +18,8 @@ module Facebook
 		#	@messaging[:persona_id] = "#{FacebookMessengerService.getPersonaId}"
 	    	#end
 		 puts "PERSONA **************"
+		puts @messaging.class
+		
 	  #puts @messaging
         end
 
