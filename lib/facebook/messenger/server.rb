@@ -64,6 +64,7 @@ module Facebook
       #
       def receive
 	puts "RECEIVE ****************"
+	puts parsed_body
         check_integrity
 
         trigger(parsed_body)
