@@ -161,7 +161,6 @@ module Facebook
       #
      
       def trigger(events)
-	      return
         # Facebook may batch several items in the 'entry' array during
         # periods of high load.
         events['entry'.freeze].each do |entry|
