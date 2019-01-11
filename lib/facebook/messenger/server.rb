@@ -227,6 +227,11 @@ module Facebook
 			if messaging['message'].nil? && messaging['postback'].nil?
 				puts "***********ADMIN SEND THIS"
 				Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
+				Facebook::Messenger::Persona.create_persona(
+				{
+					name: "Chedly",
+					profile_picture_url: "https://dw9to29mmj727.cloudfront.net/misc/newsletter-naruto3.png"
+				}, access_token: Settings.facebook_accesss_token)
 			end
 			#puts messaging['sender']
 			#puts parsed_body['entry'][0]['standby'][0]['message']
