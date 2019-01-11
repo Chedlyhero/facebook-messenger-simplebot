@@ -63,6 +63,7 @@ module Facebook
       # @raise BadRequestError if the request is tampered.
       #
       def receive
+	puts "RECEIVE ****************"
         check_integrity
 
         trigger(parsed_body)
