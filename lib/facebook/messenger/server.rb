@@ -63,8 +63,6 @@ module Facebook
       # @raise BadRequestError if the request is tampered.
       #
       def receive
-	puts "RECEIVE ****************"
-	puts parsed_body
         check_integrity
 
         trigger(parsed_body)
@@ -176,7 +174,9 @@ module Facebook
             entry['messaging'.freeze].each do |messaging|
               Facebook::Messenger::Bot.receive(messaging)
 		    @sender_id = messaging['sender']['id']
+		    puts "MESSAGING *************"
 		    puts messaging
+		    puts "MESSAGING *************"
 		    unless messaging['pass_thread_control'].nil?
 		    	    puts "***********PASS TO BOT CONTROL BY ADMIN"
 			    if FacebookMessengerService.getTimeState == true
