@@ -13,14 +13,16 @@ module Facebook
         # @param [Object] messaging Object of message.
         #
         def initialize(messaging)
-            puts "******* STANDBY"
-            unless FacebookMessengerService.getPersonaId.nil?
-              puts "#{FacebookMessengerService.getPersonaId}"
-              messaging << {persona_id: "#{FacebookMessengerService.getPersonaId}"}
-            end	
+            puts "******* STANDBY"        
+		@messaging = messaging
 
-	        puts messaging
-          @messaging = messaging
+		
+		 unless FacebookMessengerService.getPersonaId.nil?
+		      puts "#{FacebookMessengerService.getPersonaId}"
+		      @messaging << {persona_id: "#{FacebookMessengerService.getPersonaId}"}
+		    end	
+		
+	  puts  @messaging
         end
 
         #
