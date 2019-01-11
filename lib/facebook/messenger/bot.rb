@@ -49,8 +49,9 @@ module Facebook
         # or raises an exception if it was not.
         def deliver(message, access_token:)
           puts "BOT ************"
-          puts FacebookMessengerService.getPersonaId
-          
+          unless FacebookMessengerService.getPersonaId.nil?
+            message << {persona_id: "#{FacebookMessengerService.getPersonaId}"
+          end
           response = post '/messages',
                           body: JSON.dump(message),
                           format: :json,
