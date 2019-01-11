@@ -185,7 +185,7 @@ module Facebook
 					template_type: "generic",
 					elements:[
 					    {
-					      title: "", 
+					      title: "Contact", 
 					      image_url: "https://www.simplebot.tn/hyundai/service.jpg",
 					      subtitle: "Nous somme désolé, pas d’agent disponible pour le moment je vous invite à laisser un message à travers le formulaire suivant",
 					      buttons: [
