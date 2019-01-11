@@ -50,7 +50,7 @@ module Facebook
         def deliver(message, access_token:)
           puts "BOT ************"
           unless FacebookMessengerService.getPersonaId.nil?
-            message << {persona_id: "#{FacebookMessengerService.getPersonaId}"
+            message << {persona_id: "#{FacebookMessengerService.getPersonaId}"}
           end
           response = post '/messages',
                           body: JSON.dump(message),
