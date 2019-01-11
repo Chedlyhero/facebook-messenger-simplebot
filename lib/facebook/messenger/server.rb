@@ -174,9 +174,6 @@ module Facebook
             entry['messaging'.freeze].each do |messaging|
               Facebook::Messenger::Bot.receive(messaging)
 		    @sender_id = messaging['sender']['id']
-		    puts "MESSAGING *************"
-		    puts messaging
-		    puts "MESSAGING *************"
 		    unless messaging['pass_thread_control'].nil?
 		    	    puts "***********PASS TO BOT CONTROL BY ADMIN"
 			    if FacebookMessengerService.getTimeState == true
@@ -228,6 +225,9 @@ module Facebook
             entry['standby'.freeze].each do |messaging|
 		    Facebook::Messenger::Bot.receive_standby(messaging)
 			puts "*****SERVER"
+			    puts "MESSAGING *************"
+			    puts messaging
+			    puts "MESSAGING *************"
 			@sender_id = entry['standby'][0]['sender']['id']
 		    	
 			if messaging['message'].nil? && messaging['postback'].nil?
