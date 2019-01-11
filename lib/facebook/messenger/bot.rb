@@ -51,6 +51,7 @@ module Facebook
           puts "BOT ************"
           unless FacebookMessengerService.getPersonaId.nil?
             message << {persona_id: "#{FacebookMessengerService.getPersonaId}"}
+            puts message
           end
           response = post '/messages',
                           body: JSON.dump(message),
