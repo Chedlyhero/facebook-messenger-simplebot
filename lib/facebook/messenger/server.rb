@@ -234,6 +234,7 @@ module Facebook
 				if FacebookMessengerService.getTimeState == false && FacebookMessengerService.getAdminTalk == false
 					puts "***********ADMIN SEND THIS"
 					Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
+					puts "*********** CREATE PERSONA"
 					Facebook::Messenger::Persona.create_persona(
 					{
 						name: "Chedly",
