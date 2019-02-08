@@ -176,83 +176,10 @@ module Facebook
 		    @sender_id = messaging['sender']['id']
 		    unless messaging['pass_thread_control'].nil?
 		    	    #puts "***********PASS TO BOT CONTROL BY ADMIN"
-			    =begin
-			    if FacebookMessengerService.getTimeState == true
-			    	Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
-			    	  @message = []
-				  @message << {
-				    attachment: {
-				      type: "template",
-				      payload: {
-					template_type: "generic",
-					elements:[
-					    {
-					      title: "Contact", 
-					      image_url: "https://www.simplebot.tn/hyundai/service.jpg",
-					      subtitle: "Nous somme désolé, pas d’agent disponible pour le moment je vous invite à laisser un message à travers le formulaire suivant",
-					      buttons: [
-						{
-						  type: "web_url",
-						  url: "https://www.simplebot.tn/chedly/contact/?name=#{@name}",
-						  webview_height_ratio: "FULL",
-						  messenger_extensions: true,
-						  title: "Formulaire de contact"
-						}
-					      ]      
-					    }
-					  ]
-					}   
-				      }
-				    }
-				    
-			        Bot.deliver({recipient: {id: @sender_id},
-                    			message: @message[0],
-                    			message_type: "RESPONSE"},
-                    			access_token: Settings.facebook_accesss_token)
-			  	FacebookMessengerService.setTimeState(false) 
-			        FacebookMessengerService.setAdminTalk(false)
-			    else
-				Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
-			        Bot.deliver({recipient: {id: @sender_id},
-                    			message: {text: "Maintenant notre bot reprends la main."},
-                    			message_type: "RESPONSE"},
-                    			access_token: Settings.facebook_accesss_token)
-                  	    	FacebookMessengerService.setAdminTalk(false)
-			    =end
-			   
 		    end
             end
           elsif entry['standby'.freeze]
-            entry['standby'.freeze].each do |messaging|
-		    Facebook::Messenger::Bot.receive_standby(messaging)
-			puts "*****SERVER"
-			    puts "MESSAGING *************"
-			    puts messaging
-			    puts "MESSAGING *************"
-			@sender_id = entry['standby'][0]['sender']['id']
-		    	
-			if messaging['message'].nil? && messaging['postback'].nil?
-				if FacebookMessengerService.getTimeState == false && FacebookMessengerService.getAdminTalk == false
-					puts "***********ADMIN SEND THIS"
-					Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
-					puts "*********** CREATE PERSONA"
-					Facebook::Messenger::Persona.create_persona(
-					{
-						name: "Chedly",
-						profile_picture_url: "https://dw9to29mmj727.cloudfront.net/misc/newsletter-naruto3.png"
-					}, access_token: Settings.facebook_accesss_token)
-					FacebookMessengerService.setAdminTalk(true)
-					
-					#Bot.deliver({recipient: {id: @sender_id},
-                    			#	message: {text: "PERSONA"},
-                    			#	message_type: "RESPONSE",
-					#	persona_id: "#{FacebookMessengerService.getPersonaId}"},
-                    			#	access_token: Settings.facebook_accesss_token)
-				end
-			end
-			#puts messaging['sender']
-			#puts parsed_body['entry'][0]['standby'][0]['message']
-		  end
+            
           end
         end
       end
