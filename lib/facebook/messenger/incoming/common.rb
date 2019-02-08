@@ -14,10 +14,10 @@ module Facebook
         #
         def initialize(messaging) 
 		@messaging = messaging
-		puts "PERSONA **************"
-		unless FacebookMessengerService.getPersonaId.nil?
-			@messaging["persona_id"] = "#{FacebookMessengerService.getPersonaId}"
-	    	end
+		#puts "PERSONA **************"
+		#unless FacebookMessengerService.getPersonaId.nil?
+		#	@messaging["persona_id"] = "#{FacebookMessengerService.getPersonaId}"
+	    	#end
         end
 
         #
