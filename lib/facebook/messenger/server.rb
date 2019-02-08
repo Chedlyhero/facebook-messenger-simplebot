@@ -175,7 +175,8 @@ module Facebook
               Facebook::Messenger::Bot.receive(messaging)
 		    @sender_id = messaging['sender']['id']
 		    unless messaging['pass_thread_control'].nil?
-		    	    puts "***********PASS TO BOT CONTROL BY ADMIN"
+		    	    #puts "***********PASS TO BOT CONTROL BY ADMIN"
+			    =begin
 			    if FacebookMessengerService.getTimeState == true
 			    	Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
 			    	  @message = []
@@ -217,7 +218,7 @@ module Facebook
                     			message_type: "RESPONSE"},
                     			access_token: Settings.facebook_accesss_token)
                   	    	FacebookMessengerService.setAdminTalk(false)
-			    end
+			    =end
 			   
 		    end
             end
