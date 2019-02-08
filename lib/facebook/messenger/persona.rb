@@ -18,7 +18,7 @@ module Facebook
         
         #puts "Persona ///////////////"
         #puts response["id"]
-        FacebookMessengerService.setPersonaId(response['id'])
+        #FacebookMessengerService.setPersonaId(response['id'])
         
         raise_errors(response)
 
