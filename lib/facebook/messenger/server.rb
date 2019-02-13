@@ -233,12 +233,12 @@ module Facebook
 				if FacebookMessengerService.getTimeState == false && FacebookMessengerService.getAdminTalk == false
 					puts "***********ADMIN SEND THIS"
 					Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
-					puts "*********** CREATE PERSONA"
-					Facebook::Messenger::Persona.create_persona(
-					{
-						name: "Chedly",
-						profile_picture_url: "https://dw9to29mmj727.cloudfront.net/misc/newsletter-naruto3.png"
-					}, access_token: Settings.facebook_accesss_token)
+					#puts "*********** CREATE PERSONA"
+					#Facebook::Messenger::Persona.create_persona(
+					#{
+					#	name: "Chedly",
+					#	profile_picture_url: "https://dw9to29mmj727.cloudfront.net/misc/newsletter-naruto3.png"
+					#}, access_token: Settings.facebook_accesss_token)
 					FacebookMessengerService.setAdminTalk(true)
 					
 					#Bot.deliver({recipient: {id: @sender_id},
