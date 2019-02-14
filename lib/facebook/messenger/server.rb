@@ -171,7 +171,7 @@ module Facebook
           # 'messaging' won't be available and it is not relevant to us.
 	  unless entry['messaging'.freeze]
 	  	puts "******* INBOX TAKE CONTROL"
- 		puts ['messaging'.freeze].messaging.inspect
+ 
 		  puts events.inspect
 	  end
           next unless entry['messaging'.freeze]
