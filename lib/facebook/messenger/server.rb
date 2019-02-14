@@ -175,7 +175,7 @@ module Facebook
 		puts "1"
 	        puts events[0]['entry']
 		  puts "2"
-	        puts events.entry[0]
+	        puts events.entry.inspect
 		#puts events['standby'].inspect #['sender']['id']
 		sende_id = events.standby['sender']['id']
 		Contact.where(:facebook_id => sende_id).update(handover_reset: '')
