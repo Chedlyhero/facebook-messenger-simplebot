@@ -32,15 +32,7 @@ module Facebook
       end
       
      
-      def get_thread_owner(settings, access_token:)
-        response = get '/thread_owner', body: settings, query: {
-          access_token: access_token
-        }
-
-        raise_errors(response)
-
-        true
-      end
+    
       
       
       def raise_errors(response)
