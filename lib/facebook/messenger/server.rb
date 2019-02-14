@@ -174,13 +174,13 @@ module Facebook
           # periods of high load.
           entry['messaging'.freeze].each do |messaging|
 		puts "******* GET THREAD OWNER"
-                uri = URI.parse("https://graph.facebook.com/v2.6/me/thread_owner?recipient=2059758140732393&access_token=EAAHyobtEwpsBAP1IskoYISDH1u98HHuclGVEC3Fse3EDVpNkEZB3kLIQSbDIZAQMCXynl93oA12EMRxanQ0ALQsC5C95rJPB5dZAfNQM57JhiC2qBFhsVvTZBE28vUXmHWNYYjQGzVx7nZComOQeL3EMkLcUuP9931CpLQcuLhwZDZD")
+                uri = URI.parse("https://graph.facebook.com/v2.6/me/thread_owner?recipient=2059758140732393&access_token=#{Settings.facebook_accesss_token}")
                 response = Net::HTTP.get(uri)
                 response = JSON.parse(response)
                 current_app_id = response["data"][0]["thread_owner"]["app_id"]
 		  puts current_app_id
 		  puts Settings.owner_app_id
-		if current_app_id == Settings.owner_app_id
+		if current_app_id.eql? Settings.owner_app_id
 	    	 Facebook::Messenger::Bot.receive(messaging)
 		else
 		  puts "******* INBOX TAKE CONTROL"	
