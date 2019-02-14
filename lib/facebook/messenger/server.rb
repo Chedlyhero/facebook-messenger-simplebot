@@ -217,8 +217,8 @@ module Facebook
 				message_type: "RESPONSE"},
 				access_token: Settings.facebook_accesss_token)
 			FacebookMessengerService.setTimeState(false) 
+		  end
 		end
-           
           end
         end
 	      
