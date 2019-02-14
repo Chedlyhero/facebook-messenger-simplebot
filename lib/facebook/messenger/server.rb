@@ -183,10 +183,42 @@ module Facebook
 		if current_app_id.to_s == Settings.owner_app_id.to_s
 	    	 Facebook::Messenger::Bot.receive(messaging)
 		else
-		  puts "******* INBOX TAKE CONTROL"	
+		  puts "******* INBOX TAKE CONTROL"
+		  if FacebookMessengerService.getTimeState == true
+			Contact.where(:facebook_id => '2059758140732393').update(handover_reset: '')
+			  @message = []
+			  @message << {
+			    attachment: {
+			      type: "template",
+			      payload: {
+				template_type: "generic",
+				elements:[
+				    {
+				      title: "Contact", 
+				      image_url: "https://www.simplebot.tn/hyundai/service.jpg",
+				      subtitle: "Nous sommes désolés, pas d’agent disponible pour le moment, Merci d'utiliser le formulaire suivant",
+				      buttons: [
+					{
+					  type: "web_url",
+					  url: "https://www.simplebot.tn/chedly/contact/?name=#{@name}",
+					  webview_height_ratio: "FULL",
+					  messenger_extensions: true,
+					  title: "Contact"
+					}
+				      ]      
+				    }
+				  ]
+				}   
+			      }
+			    }
+
+			Bot.deliver({recipient: {id: '2059758140732393'},
+				message: @message[0],
+				message_type: "RESPONSE"},
+				access_token: Settings.facebook_accesss_token)
+			FacebookMessengerService.setTimeState(false) 
 		end
-            
-	 	
+           
           end
         end
 	      
