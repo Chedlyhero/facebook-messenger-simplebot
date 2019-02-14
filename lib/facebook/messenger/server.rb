@@ -180,7 +180,7 @@ module Facebook
                 current_app_id = response["data"][0]["thread_owner"]["app_id"]
 		  puts current_app_id
 		  puts Settings.owner_app_id
-		if current_app_id.eql? Settings.owner_app_id
+		if current_app_id.to_s == Settings.owner_app_id.to_s
 	    	 Facebook::Messenger::Bot.receive(messaging)
 		else
 		  puts "******* INBOX TAKE CONTROL"	
