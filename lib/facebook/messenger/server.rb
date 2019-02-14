@@ -173,7 +173,8 @@ module Facebook
 	  	puts "******* INBOX TAKE CONTROL"
 		  standby = entry['standby']
 		  puts standby
-		  puts standby[0]
+		  		  puts standby[0]["sender"]
+		  puts standby["sender"]
 		  
 		#puts events['standby'].inspect #['sender']['id']
 		#sende_id = events.standby['sender']['id']
