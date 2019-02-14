@@ -182,6 +182,7 @@ module Facebook
 		#  puts Settings.owner_app_id
 		#if current_app_id.to_s == Settings.owner_app_id.to_s
 	    	 Facebook::Messenger::Bot.receive(messaging)
+		  puts messaging.inspect
 		#else
 		  puts "******* INBOX TAKE CONTROL"
 		  
