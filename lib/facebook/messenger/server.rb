@@ -172,9 +172,6 @@ module Facebook
 	  unless entry['messaging'.freeze]
 	  	puts "******* INBOX TAKE CONTROL"
 		puts events.inspect
-		  puts 1
-	        puts events.entry.inspect
-		  puts 2
 		  puts entry
 		#puts events['standby'].inspect #['sender']['id']
 		sende_id = events.standby['sender']['id']
