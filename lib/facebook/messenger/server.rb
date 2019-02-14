@@ -171,8 +171,9 @@ module Facebook
           # 'messaging' won't be available and it is not relevant to us.
 	  unless entry['messaging'.freeze]
 	  	puts "******* INBOX TAKE CONTROL"
-		 puts entry['standby']['sender']
-		  puts entry['standby'].sender['id']
+		  standby = entry['standby']
+		  puts standby
+		  puts standby['sender']['id']
 		#puts events['standby'].inspect #['sender']['id']
 		#sende_id = events.standby['sender']['id']
 		#Contact.where(:facebook_id => sende_id).update(handover_reset: '')
