@@ -169,7 +169,7 @@ module Facebook
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
-		if entry['messaging'.freeze]
+		unless entry['messaging'.freeze]
 			 puts "******* INBOX TAKE CONTROL"
 		end
           next unless entry['messaging'.freeze]
