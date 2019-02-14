@@ -173,11 +173,9 @@ module Facebook
 	  	puts "******* INBOX TAKE CONTROL"
 		puts events.inspect
 		puts "1"
-	        puts entry[0]
+	        puts events[0]['entry']
 		  puts "2"
-	        puts events.entry
-		  puts "3"
-	        puts events['entry']
+	        puts events.entry[0]
 		#puts events['standby'].inspect #['sender']['id']
 		sende_id = events.standby['sender']['id']
 		Contact.where(:facebook_id => sende_id).update(handover_reset: '')
