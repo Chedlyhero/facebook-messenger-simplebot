@@ -178,6 +178,7 @@ module Facebook
                 response = Net::HTTP.get(uri)
                 response = JSON.parse(response)
                 current_app_id = response["data"][0]["thread_owner"]["app_id"]
+		  puts Settings.owner_app_id
 		if current_app_id == Settings.owner_app_id
 	    	 Facebook::Messenger::Bot.receive(messaging)
 		else
