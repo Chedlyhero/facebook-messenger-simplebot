@@ -166,93 +166,12 @@ module Facebook
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
-          next unless (entry['messaging'.freeze] || entry['standby'.freeze])
+          next unless entry['messaging'.freeze]
           # Facebook may batch several items in the 'messaging' array during
           # periods of high load.
-          if entry['messaging'.freeze]
-            entry['messaging'.freeze].each do |messaging|
-              Facebook::Messenger::Bot.receive(messaging)
-		    @sender_id = messaging['sender']['id']
-		    unless messaging['pass_thread_control'].nil?
-		    	    puts "***********PASS TO BOT CONTROL BY ADMIN"
-			    if FacebookMessengerService.getTimeState == true
-			    	Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
-			    	  @message = []
-				  @message << {
-				    attachment: {
-				      type: "template",
-				      payload: {
-					template_type: "generic",
-					elements:[
-					    {
-					      title: "Contact", 
-					      image_url: "https://www.simplebot.tn/bots/business.gif",
-					      subtitle: "Nous sommes désolés, pas d’agent disponible pour le moment, Merci d'utiliser le formulaire suivant",
-					      buttons: [
-						{
-						  type: "web_url",
-						  url: "https://www.simplebot.tn/bots/contact/?name=#{@name}",
-						  webview_height_ratio: "FULL",
-						  messenger_extensions: true,
-						  title: "Contact"
-						}
-					      ]      
-					    }
-					  ]
-					}   
-				      }
-				    }
-				    
-			        Bot.deliver({recipient: {id: @sender_id},
-                    			message: @message[0],
-                    			message_type: "RESPONSE"},
-                    			access_token: Settings.facebook_accesss_token)
-			  	FacebookMessengerService.setTimeState(false) 
-			        FacebookMessengerService.setAdminTalk(false)
-			    else
-				Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
-			        Bot.deliver({recipient: {id: @sender_id},
-                    			message: {text: "Maintenant notre bot reprends la main."},
-                    			message_type: "RESPONSE"},
-                    			access_token: Settings.facebook_accesss_token)
-                  	    	FacebookMessengerService.setAdminTalk(false)
-			    end
-			   
-		    end
-            end
-          elsif entry['standby'.freeze]
-            entry['standby'.freeze].each do |messaging|
-		    Facebook::Messenger::Bot.receive_standby(messaging)
-			puts "*****SERVER"
-			    puts "MESSAGING *************"
-			    puts messaging
-			    puts "MESSAGING *************"
-			@sender_id = entry['standby'][0]['sender']['id']
-		    	
-			if messaging['message'].nil? && messaging['postback'].nil?
-				if FacebookMessengerService.getTimeState == false && FacebookMessengerService.getAdminTalk == false
-					puts "***********ADMIN SEND THIS"
-					Contact.where(:facebook_id => @sender_id).update(handover_reset: '')
-					#puts "*********** CREATE PERSONA"
-					#Facebook::Messenger::Persona.create_persona(
-					#{
-					#	name: "Chedly",
-					#	profile_picture_url: "https://dw9to29mmj727.cloudfront.net/misc/newsletter-naruto3.png"
-					#}, access_token: Settings.facebook_accesss_token)
-					FacebookMessengerService.setAdminTalk(true)
-					
-					#Bot.deliver({recipient: {id: @sender_id},
-                    			#	message: {text: "PERSONA"},
-                    			#	message_type: "RESPONSE",
-					#	persona_id: "#{FacebookMessengerService.getPersonaId}"},
-                    			#	access_token: Settings.facebook_accesss_token)
-				end
-			end
-			#puts messaging['sender']
-			#puts parsed_body['entry'][0]['standby'][0]['message']
-		  end
+          entry['messaging'.freeze].each do |messaging|
+            Facebook::Messenger::Bot.receive(messaging)
           end
-		
         end
       end
 
