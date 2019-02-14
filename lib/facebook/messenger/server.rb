@@ -169,6 +169,9 @@ module Facebook
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
+		if entry['messaging'.freeze]
+			 puts "******* INBOX TAKE CONTROL"
+		end
           next unless entry['messaging'.freeze]
           # Facebook may batch several items in the 'messaging' array during
           # periods of high load.
@@ -182,9 +185,9 @@ module Facebook
 		#  puts Settings.owner_app_id
 		#if current_app_id.to_s == Settings.owner_app_id.to_s
 	    	 Facebook::Messenger::Bot.receive(messaging)
-		  puts messaging
+
 		#else
-		  puts "******* INBOX TAKE CONTROL"
+		 
 		  
 		#end
           end
