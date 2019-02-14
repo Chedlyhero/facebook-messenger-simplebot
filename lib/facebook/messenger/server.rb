@@ -173,19 +173,19 @@ module Facebook
           # Facebook may batch several items in the 'messaging' array during
           # periods of high load.
           entry['messaging'.freeze].each do |messaging|
-		puts "******* GET THREAD OWNER"
-                uri = URI.parse("https://graph.facebook.com/v2.6/me/thread_owner?recipient=2059758140732393&access_token=#{Settings.facebook_accesss_token}")
-                response = Net::HTTP.get(uri)
-                response = JSON.parse(response)
-                current_app_id = response["data"][0]["thread_owner"]["app_id"]
-		  puts current_app_id
-		  puts Settings.owner_app_id
-		if current_app_id.to_s == Settings.owner_app_id.to_s
+		#puts "******* GET THREAD OWNER"
+                #uri = URI.parse("https://graph.facebook.com/v2.6/me/thread_owner?recipient=2059758140732393&access_token=#{Settings.facebook_accesss_token}")
+                #response = Net::HTTP.get(uri)
+                #response = JSON.parse(response)
+                #current_app_id = response["data"][0]["thread_owner"]["app_id"]
+		#  puts current_app_id
+		#  puts Settings.owner_app_id
+		#if current_app_id.to_s == Settings.owner_app_id.to_s
 	    	 Facebook::Messenger::Bot.receive(messaging)
-		else
-		  puts "******* INBOX TAKE CONTROL"
+		#else
+		#  puts "******* INBOX TAKE CONTROL"
 		  
-		end
+		#end
           end
         end
 	      
