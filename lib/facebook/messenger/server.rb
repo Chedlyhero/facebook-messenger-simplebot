@@ -171,8 +171,8 @@ module Facebook
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
 	  messaging =  entry['messaging']
-  	  messaging[0]['sender']
-	  messaging[0]['pass_thread_control']
+  	  puts messaging[0]['sender']
+	  puts messaging[0]['pass_thread_control']
 	  puts "/*/*/*/"
 	  unless entry['messaging'.freeze]
 	  	puts "******* INBOX TAKE CONTROL"
