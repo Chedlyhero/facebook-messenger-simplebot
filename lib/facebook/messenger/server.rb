@@ -170,6 +170,8 @@ module Facebook
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
+		
+	  # WHEN PAGE ADMIN DONE CHATING WITH USER AND CLICK TO DONE BUTTON
 	  messaging =  entry['messaging']
 	  unless defined?(messaging[0]['pass_thread_control']).nil?
 		  pass_thread_control = messaging[0]['pass_thread_control']
@@ -187,7 +189,8 @@ module Facebook
 		  	end
 		  end
 	  end
-	  puts "*/*/*/***/*"
+	  
+	  # SET USER TO 'CHAT WITH ADMIN PAGE' STATE
 	  unless entry['messaging'.freeze]
 	  	puts "******* INBOX TAKE CONTROL"
 		standby = entry['standby']
