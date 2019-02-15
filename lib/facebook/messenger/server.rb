@@ -175,7 +175,9 @@ module Facebook
 	  puts messaging[0]['pass_thread_control']
 	  #puts messaging[0]['pass_thread_control']['new_owner_app_id']
 	  unless messaging[0]['pass_thread_control'].nil?
-		  if messaging[0]['pass_thread_control']['new_owner_app_id'] == Settings.owner_app_id.to_s
+		  pass_thread_control = messaging[0]['pass_thread_control']
+		  puts pass_thread_control[0]['new_owner_app_id']
+		  if pass_thread_control[0]['new_owner_app_id'] == Settings.owner_app_id.to_s
 			puts "PASS THREAD CONTROL"	
 		  end
 	  end
