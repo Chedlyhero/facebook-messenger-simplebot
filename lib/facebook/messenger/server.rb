@@ -166,13 +166,14 @@ module Facebook
       def trigger(events)
         # Facebook may batch several items in the 'entry' array during
         # periods of high load.
-	 puts "1*/*/*/*/*/**"
+	 puts events
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
 	  unless entry['messaging'.freeze]
 	  	puts "******* INBOX TAKE CONTROL"
 		standby = entry['standby']
+		puts standby[0]['sender']['id']
 		sende_id = standby[0]['sender']['id']
 		Contact.where(:facebook_id => sende_id).update(handover_reset: '')
 	  end
