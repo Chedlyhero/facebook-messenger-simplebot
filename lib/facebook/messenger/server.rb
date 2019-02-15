@@ -174,9 +174,10 @@ module Facebook
 	  	puts "******* INBOX TAKE CONTROL"
 		standby = entry['standby']
 		puts standby[0]['sender']['id']
-		puts standby[0]['delivery']
-		sende_id = standby[0]['sender']['id']
-		Contact.where(:facebook_id => sende_id).update(handover_reset: '')
+		unless standby[0]['delivery'].nil?
+			sende_id = standby[0]['sender']['id']
+			Contact.where(:facebook_id => sende_id).update(handover_reset: '')
+		end
 	  end
           next unless entry['messaging'.freeze]
           # Facebook may batch several items in the 'messaging' array during
