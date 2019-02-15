@@ -174,6 +174,7 @@ module Facebook
 	  	puts "******* INBOX TAKE CONTROL"
 		standby = entry['standby']
 		puts standby[0]['sender']['id']
+		puts standby[0]['delivery']
 		sende_id = standby[0]['sender']['id']
 		Contact.where(:facebook_id => sende_id).update(handover_reset: '')
 	  end
