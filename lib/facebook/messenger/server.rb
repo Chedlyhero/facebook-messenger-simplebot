@@ -174,7 +174,7 @@ module Facebook
   	  #puts messaging[0]['sender']
 	  #puts messaging[0]['pass_thread_control']
 	  #puts messaging[0]['pass_thread_control']['new_owner_app_id']
-	  unless messaging[0]['pass_thread_control'].nil?
+	  unless defined?(messaging[0]['pass_thread_control']).nil?
 		  pass_thread_control = messaging[0]['pass_thread_control']
 		  puts pass_thread_control['new_owner_app_id']
 		  #puts pass_thread_control.new_owner_app_id
