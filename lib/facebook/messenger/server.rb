@@ -186,7 +186,7 @@ module Facebook
                     			message: {text: "Maintenant notre bot reprends la main :)"},
                     			message_type: "RESPONSE"},
                     			access_token: Settings.facebook_accesss_token)
-				Contact.where(:facebook_id => sende_id).update(handover_reset: '')
+				Contact.where(:facebook_id => sender_id).update(handover_reset: '')
 		  	end
 		  end
 	  end
