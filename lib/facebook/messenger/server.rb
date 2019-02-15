@@ -177,11 +177,12 @@ module Facebook
 		  	puts pass_thread_control['new_owner_app_id']
 		 	if pass_thread_control['new_owner_app_id'].to_s == Settings.owner_app_id.to_s
 				puts "PASS THREAD CONTROL"
-				puts messaging
-				#Bot.deliver({recipient: {id: @sender_id},
-                    		#	message: {text: "Maintenant notre bot reprends la main."},
-                    		#	message_type: "RESPONSE"},
-                    		#	access_token: Settings.facebook_accesss_token)
+				sender_id =  messaging[0]['sender']
+				puts sender['id']
+				Bot.deliver({recipient: {id: sender_id},
+                    			message: {text: "Maintenant notre bot reprends la main :)"},
+                    			message_type: "RESPONSE"},
+                    			access_token: Settings.facebook_accesss_token)
 		  	end
 		  end
 	  end
