@@ -176,11 +176,13 @@ module Facebook
 	  #puts messaging[0]['pass_thread_control']['new_owner_app_id']
 	  unless defined?(messaging[0]['pass_thread_control']).nil?
 		  pass_thread_control = messaging[0]['pass_thread_control']
-		  puts pass_thread_control['new_owner_app_id']
-		  #puts pass_thread_control.new_owner_app_id
-		  #puts pass_thread_control[0].new_owner_app_id
-		 if pass_thread_control['new_owner_app_id'].to_s == Settings.owner_app_id.to_s
-			puts "PASS THREAD CONTROL"	
+		  unless defined?(pass_thread_control['new_owner_app_id']).nil?
+		  	puts pass_thread_control['new_owner_app_id']
+		  	#puts pass_thread_control.new_owner_app_id
+		  	#puts pass_thread_control[0].new_owner_app_id
+		 	if pass_thread_control['new_owner_app_id'].to_s == Settings.owner_app_id.to_s
+				puts "PASS THREAD CONTROL"	
+		  	end
 		  end
 	  end
 	  puts "/*/*/*/"
