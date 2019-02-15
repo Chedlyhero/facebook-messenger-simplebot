@@ -173,9 +173,11 @@ module Facebook
 	  messaging =  entry['messaging']
   	  puts messaging[0]['sender']
 	  puts messaging[0]['pass_thread_control']
-	  puts messaging[0]['pass_thread_control']['new_owner_app_id']
-	  unless messaging[0]['pass_thread_control'].nil? && messaging[0]['pass_thread_control']['new_owner_app_id'] == Settings.owner_app_id.to_s
-		puts "PASS THREAD CONTROL"	
+	  #puts messaging[0]['pass_thread_control']['new_owner_app_id']
+	  unless messaging[0]['pass_thread_control'].nil?
+		  if messaging[0]['pass_thread_control']['new_owner_app_id'] == Settings.owner_app_id.to_s
+			puts "PASS THREAD CONTROL"	
+		  end
 	  end
 	  puts "/*/*/*/"
 	  unless entry['messaging'.freeze]
