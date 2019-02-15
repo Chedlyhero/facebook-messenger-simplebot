@@ -12,7 +12,6 @@ module Facebook
       module_function
 
       def pass_thread_control(settings, access_token:)
-        puts "*/*/*/TEST"
         response = post '/pass_thread_control', body: settings, query: {
           access_token: access_token
         }
