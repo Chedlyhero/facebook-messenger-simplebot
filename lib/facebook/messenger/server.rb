@@ -182,8 +182,11 @@ module Facebook
 				sender = messaging[0]['sender']
 				sender_id = sender['id']
 				puts sender_id
+				@data = []
+			        file = IniFile.load(Rails.root.join('app/assets/config.ini'))
+            			data = file["agent live"]
 				Bot.deliver({recipient: {id: sender_id},
-                    			message: {text: "Maintenant notre bot reprends la main :)"},
+                    			message: {text: "#{data['messageRelaisBot']}"},
                     			message_type: "RESPONSE"},
                     			access_token: Settings.facebook_accesss_token)
 				Contact.where(:facebook_id => sender_id).update(handover_reset: '')
