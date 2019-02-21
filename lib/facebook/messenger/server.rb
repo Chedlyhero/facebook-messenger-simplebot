@@ -183,7 +183,7 @@ module Facebook
 				sender_id = sender['id']
 				puts sender_id
 				@data = []
-			        file = IniFile.load(Rails.root.join('app/assets/config.ini'))
+			        file = IniFile.load(Rails.root.join('app/assets/config_agent_live.ini'))
             			data = file["agent live"]
 				Bot.deliver({recipient: {id: sender_id},
                     			message: {text: "#{data['messageRelaisBot']}"},
