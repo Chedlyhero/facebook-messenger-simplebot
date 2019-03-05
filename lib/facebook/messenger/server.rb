@@ -174,7 +174,7 @@ module Facebook
 	  # WHEN PAGE ADMIN DONE CHATING WITH USER AND CLICK TO DONE BUTTON
 	  messaging =  entry['messaging']
 		puts "********* TEST"
-	puts messaging[0]
+	puts messaging
 	  unless defined?(messaging[0]['pass_thread_control']).nil?
 		  pass_thread_control = messaging[0]['pass_thread_control']
 		  unless defined?(pass_thread_control['new_owner_app_id']).nil?
