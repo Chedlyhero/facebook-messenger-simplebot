@@ -198,13 +198,9 @@ module Facebook
 		  end  
 	  end
 	  
-	sleep 2	
+	puts "********* TEST"
+	puts entry
 	unless entry['messaging'.freeze]
-			
-
-	   	puts "********* TEST"
-		puts parsed_body['entry'][0]
-
 		standby = entry['standby']
 		puts standby[0]['sender']['id']
 		unless standby[0]['delivery'].nil?
