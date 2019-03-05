@@ -192,14 +192,7 @@ module Facebook
 				Contact.where(:facebook_id => sender_id).update(handover_reset: '')
 		  	end
 		  end
-	  end
-	  
-	  
-		
-          next unless entry['messaging'.freeze]
-          # Facebook may batch several items in the 'messaging' array during
-          # periods of high load.
-		unless entry['messaging'.freeze]
+		  unless entry['messaging'.freeze]
 	  		puts "******* AGENT TAKE CONTROL"
 			standby = entry['standby']
 			puts standby[0]['sender']['id']
@@ -208,6 +201,14 @@ module Facebook
 				Contact.where(:facebook_id => sende_id).update(handover_reset: '')
 			end
 	  	end
+	  end
+	  
+	  
+		
+          next unless entry['messaging'.freeze]
+          # Facebook may batch several items in the 'messaging' array during
+          # periods of high load.
+		
           entry['messaging'.freeze].each do |messaging|
 		#puts "******* GET THREAD OWNER"
                 #uri = URI.parse("https://graph.facebook.com/v2.6/me/thread_owner?recipient=2059758140732393&access_token=#{Settings.facebook_accesss_token}")
