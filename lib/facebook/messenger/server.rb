@@ -198,9 +198,9 @@ module Facebook
 		  end  
 	  end
 	  
-	
+	sleep 2	
 	unless entry['messaging'.freeze]
-		sleep 2		
+			
 
 	   	puts "********* TEST"
 		puts parsed_body['entry'][0]
