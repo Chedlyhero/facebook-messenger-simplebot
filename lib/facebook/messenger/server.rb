@@ -200,13 +200,13 @@ module Facebook
 	  end
 	  
 	unless entry['messaging'.freeze]
-		standby = entry['standby']
-		puts standby[0]['sender']['id']
-		unless standby[0]['delivery'].nil?
-			sender_id = standby[0]['sender']['id']
-			agent = Contact.find_by(:facebook_id => sender_id).agent
-			Contact.where(:facebook_id => sender_id).update(handover_reset: '')
-		end
+		#standby = entry['standby']
+		#puts standby[0]['sender']['id']
+		#unless standby[0]['delivery'].nil?
+		#	sender_id = standby[0]['sender']['id']
+		#	agent = Contact.find_by(:facebook_id => sender_id).agent
+		#	Contact.where(:facebook_id => sender_id).update(handover_reset: '')
+		#end
 	end
 	  
 		
@@ -215,21 +215,24 @@ module Facebook
           # periods of high load.
 		
           entry['messaging'.freeze].each do |messaging|
-		#puts "******* GET THREAD OWNER"
-                #uri = URI.parse("https://graph.facebook.com/v2.6/me/thread_owner?recipient=2059758140732393&access_token=#{Settings.facebook_accesss_token}")
-                #response = Net::HTTP.get(uri)
-                #response = JSON.parse(response)
-                #current_app_id = response["data"][0]["thread_owner"]["app_id"]
+		puts "******* GET THREAD OWNER"
+                uri = URI.parse("https://graph.facebook.com/v2.6/me/thread_owner?recipient=2059758140732393&access_token=#{Settings.facebook_accesss_token}")
+                response = Net::HTTP.get(uri)
+                response = JSON.parse(response)
+                current_app_id = response["data"][0]["thread_owner"]["app_id"]
 		#  puts current_app_id
 		#  puts Settings.owner_app_id
-		#if current_app_id.to_s == Settings.owner_app_id.to_s
-	    	 Facebook::Messenger::Bot.receive(messaging)
+		if current_app_id.to_s == Settings.owner_app_id.to_s
+	    	 	Facebook::Messenger::Bot.receive(messaging)
 
-		#else
+		else
 		 # SET USER TO 'CHAT WITH AN AGENT' STATE
-	  	
+			standby = entry['standby']
+	  		sender_id = standby[0]['sender']['id']
+			agent = Contact.find_by(:facebook_id => sender_id).agent
+			Contact.where(:facebook_id => sender_id).update(handover_reset: '')
 		  
-		#end
+		end
           end
         end
 	      
