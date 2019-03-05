@@ -67,7 +67,7 @@ module Facebook
       #
       def receive
         check_integrity
-
+	
         trigger(parsed_body)
       rescue BadRequestError => error
         respond_with_error(error)
@@ -83,6 +83,9 @@ module Facebook
         # If app secret is not found in environment, return.
         # So for the security purpose always add provision in
         #   configuration provider to return app secret.
+
+	  puts "********* TEST"
+	puts parsed_body['entry'][0]
 
         return unless app_secret_for(parsed_body['entry'][0]['id'])
 
@@ -172,8 +175,8 @@ module Facebook
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
-	  puts "********* TEST"
-	  puts entry
+		
+		
 	  # WHEN PAGE ADMIN DONE CHATING WITH USER AND CLICK TO DONE BUTTON
 	  messaging =  entry['messaging']
 
