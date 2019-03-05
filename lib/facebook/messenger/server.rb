@@ -168,7 +168,7 @@ module Facebook
         # periods of high load.
       
 	puts "************* TESTS"      
-	puts receive
+	puts parsed_body
 	      
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
