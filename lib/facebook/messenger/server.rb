@@ -194,16 +194,7 @@ module Facebook
 		  end
 	  end
 	  
-	  # SET USER TO 'CHAT WITH ADMIN PAGE' STATE
-	  unless entry['messaging'.freeze]
-	  	puts "******* INBOX TAKE CONTROL"
-		standby = entry['standby']
-		puts standby[0]['sender']['id']
-		unless standby[0]['delivery'].nil?
-			sende_id = standby[0]['sender']['id']
-			Contact.where(:facebook_id => sende_id).update(handover_reset: '')
-		end
-	  end
+	  
 		
           next unless entry['messaging'.freeze]
           # Facebook may batch several items in the 'messaging' array during
@@ -220,7 +211,16 @@ module Facebook
 	    	 Facebook::Messenger::Bot.receive(messaging)
 
 		#else
-		 
+		 # SET USER TO 'CHAT WITH ADMIN PAGE' STATE
+	  	unless entry['messaging'.freeze]
+	  		puts "******* INBOX TAKE CONTROL"
+			standby = entry['standby']
+			puts standby[0]['sender']['id']
+			unless standby[0]['delivery'].nil?
+				sende_id = standby[0]['sender']['id']
+				Contact.where(:facebook_id => sende_id).update(handover_reset: '')
+			end
+	  	end
 		  
 		#end
           end
