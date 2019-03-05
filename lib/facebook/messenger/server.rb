@@ -168,7 +168,8 @@ module Facebook
         # periods of high load.
 	      
 	      		
-	      
+	      	puts "********* TEST"
+	puts events
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
@@ -198,8 +199,6 @@ module Facebook
 		  end  
 	  end
 	  
-	puts "********* TEST"
-	puts entry
 	unless entry['messaging'.freeze]
 		standby = entry['standby']
 		puts standby[0]['sender']['id']
