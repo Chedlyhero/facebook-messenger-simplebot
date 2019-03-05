@@ -195,22 +195,20 @@ module Facebook
 	  end
 	  
 		unless entry['messaging'.freeze]
-	  	 	#puts "******* AGENT TAKE CONTROL"
-			 
+	  	 	puts "******* AGENT TAKE CONTROL"
+			puts standby[0]
+			
 			#standby = entry['standby']
 			#puts standby[0]['sender']['id']
 			#unless standby[0]['delivery'].nil?
 			#	sender_id = standby[0]['sender']['id']
-			#	Contact.where(:facebook_id => sender_id).update(handover_reset: '')
+			#	agent = Contact.find_by(:facebook_id => sender_id).agent
+			#	if agent == true
+			#		Contact.where(:facebook_id => sender_id).update(handover_reset: '')
+			#	end
 			#end
 	  	end
 	  
-		puts "******* GET THREAD OWNER"
-                uri = URI.parse("https://graph.facebook.com/v2.6/me/thread_owner?recipient=2059758140732393&access_token=#{Settings.facebook_accesss_token}")
-                response = Net::HTTP.get(uri)
-                response = JSON.parse(response)
-                current_app_id = response["data"][0]["thread_owner"]["app_id"]
-		puts current_app_id
 		
           next unless entry['messaging'.freeze]
           # Facebook may batch several items in the 'messaging' array during
