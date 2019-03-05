@@ -196,7 +196,7 @@ module Facebook
 	  
 		unless entry['messaging'.freeze]
 	  	 	puts "******* AGENT TAKE CONTROL"
-			puts standby[0]
+			puts entry['standby']
 			
 			#standby = entry['standby']
 			#puts standby[0]['sender']['id']
