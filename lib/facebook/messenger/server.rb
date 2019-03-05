@@ -192,7 +192,8 @@ module Facebook
 				Contact.where(:facebook_id => sender_id).update(handover_reset: '')
 		  	end
 		  end
-		  unless entry['messaging'.freeze]
+	  else
+		   unless entry['messaging'.freeze]
 	  		puts "******* AGENT TAKE CONTROL"
 			standby = entry['standby']
 			puts standby[0]['sender']['id']
