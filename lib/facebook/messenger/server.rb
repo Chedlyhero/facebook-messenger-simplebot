@@ -167,8 +167,7 @@ module Facebook
         # Facebook may batch several items in the 'entry' array during
         # periods of high load.
 	      
-	      		puts "********* TEST"
-	puts events
+	      		
 	      
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
@@ -176,7 +175,8 @@ module Facebook
 		
 	  # WHEN PAGE ADMIN DONE CHATING WITH USER AND CLICK TO DONE BUTTON
 	  messaging =  entry['messaging']
-
+	  puts "********* TEST"
+	  puts messaging
 	  unless defined?(messaging[0]['pass_thread_control']).nil?
 		  pass_thread_control = messaging[0]['pass_thread_control']
 		  unless defined?(pass_thread_control['new_owner_app_id']).nil?
