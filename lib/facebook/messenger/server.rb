@@ -84,9 +84,6 @@ module Facebook
         # So for the security purpose always add provision in
         #   configuration provider to return app secret.
 
-	  puts "********* TEST"
-	puts parsed_body['entry'][0]
-
         return unless app_secret_for(parsed_body['entry'][0]['id'])
 
         unless signature.start_with?('sha1='.freeze)
@@ -201,17 +198,20 @@ module Facebook
 		  end  
 	  end
 	  
+	
 	unless entry['messaging'.freeze]
-		
+		sleep 2		
 
+	   	puts "********* TEST"
+		puts parsed_body['entry'][0]
 
-		#standby = entry['standby']
-		#puts standby[0]['sender']['id']
-		#unless standby[0]['delivery'].nil?
-		#	sender_id = standby[0]['sender']['id']
-		#	agent = Contact.find_by(:facebook_id => sender_id).agent
-		#	Contact.where(:facebook_id => sender_id).update(handover_reset: '')
-		#end
+		standby = entry['standby']
+		puts standby[0]['sender']['id']
+		unless standby[0]['delivery'].nil?
+			sender_id = standby[0]['sender']['id']
+			agent = Contact.find_by(:facebook_id => sender_id).agent
+			Contact.where(:facebook_id => sender_id).update(handover_reset: '')
+		end
 	end
 	  
 		
